@@ -1,4 +1,4 @@
-db/data
+db/data/**
 app/data/**
 !app/data/conf**
 *.log
