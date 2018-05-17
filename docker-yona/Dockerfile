@@ -17,16 +17,20 @@ RUN wget https://github.com/yona-projects/yona/releases/download/v${YONA_VERSION
 RUN unzip yona-v${YONA_VERSION}-mariadb-10.2.bin.zip -d .
 RUN rm -f yona-v${YONA_VERSION}-mariadb-10.2.bin.zip
 
+# add entrypoint file
+ADD entrypoint.sh ${YONA_HOME}/bin/entrypoint.sh
+RUN chmod +x ${YONA_HOME}/bin/entrypoint.sh
+
 ## add yona user
 RUN groupadd yona && \
 useradd -c "yona user" -d ${YONA_ROOT} -g yona -s /bin/bash yona && \
 chown -R yona:yona ${YONA_ROOT}
 
 ## change user
-USER yona 
+USER yona
 
 ## yona port
 EXPOSE 9000
 
 ## run
-CMD ${YONA_HOME}/bin/yona
+ENTRYPOINT ${YONA_HOME}/bin/entrypoint.sh
