@@ -22,12 +22,12 @@ ADD entrypoint.sh ${YONA_HOME}/bin/entrypoint.sh
 RUN chmod +x ${YONA_HOME}/bin/entrypoint.sh
 
 ## add yona user
-RUN groupadd yona && \
-useradd -c "yona user" -d ${YONA_ROOT} -g yona -s /bin/bash yona && \
-chown -R yona:yona ${YONA_ROOT}
+#RUN groupadd yona && \
+#useradd -c "yona user" -d ${YONA_ROOT} -g yona -s /bin/bash yona && \
+#chown -R yona:yona ${YONA_ROOT}
 
 ## change user
-USER yona
+##USER yona
 
 ## yona port
 EXPOSE 9000
